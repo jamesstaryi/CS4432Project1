@@ -50,6 +50,17 @@ public class bufferPool{
                 buffers[emptyFrame].setContent(fileNumber);
                 return buffers[emptyFrame].getRecord(recordNumber);
             }
+            else{
+                for(int i = 0; i < buffers.length; i++){
+                    if(!buffers[i].getPinned()){
+                        if(!buffers[i].getDirty()){
+                            buffers[i].setBlockID(emptyFrame);
+                            buffers[i].setContent(fileNumber);
+                            return buffers[i].getRecord(recordNumber);
+                        }
+                    }
+                }
+            }
         }
         return null;
     }
