@@ -61,4 +61,13 @@ public class frame {
             e.printStackTrace();
         }
     }
+
+    public void updateContent(int fileNumber) {
+        String fileName = "F" + fileNumber + ".txt";
+        try (FileOutputStream fileOutputStream = new FileOutputStream("Project1/" + fileName)) {
+            fileOutputStream.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
